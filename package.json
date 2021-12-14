@@ -1,0 +1,81 @@
+{
+  "name": "@funfasy/nestjs-minter-rpc",
+  "version": "0.0.1",
+  "description": "NestJs module to interact with Minter Protocol via RPC API",
+  "author": "FunFaSy Team (https://github.com/FunFaSy)",
+  "license": "(MIT AND Apache-2.0)",
+  "homepage": "https://github.com/FunFaSy/nestjs-minter-rpc#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FunFaSy/nestjs-minter-rpc.git"
+  },
+  "keywords": [
+    "nest",
+    "nestjs",
+    "minter",
+    "blockchain"
+  ],
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "format": "prettier --write \"**/*.ts\"",
+    "lint": "eslint test/**/*.ts && eslint src/**/*.ts",
+    "fix": "eslint test/**/*.ts --fix && eslint src/**/*.ts --fix",
+    "compile": "rm -rf dist && yarn format && tsc -p ./tsconfig.json -p tsconfig.build.json",
+    "build": "yarn compile",
+    "test": "jest --ci --reporters=default --reporters=jest-junit --runInBand",
+    "test-cov": "jest --ci --coverage",
+    "prepublish": "not-in-install && (yarn build) || in-install"
+  },
+  "peerDependencies": {
+    "@nestjs/common": ">=8.2.3",
+    "@nestjs/core": ">=8.2.3",
+    "@funfasy/minter-sdk-js": ">=0.1.5"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^8.2.3",
+    "@nestjs/core": "^8.2.3",
+    "@nestjs/testing": "^8.2.3",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.12",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "in-publish": "^2.0.0",
+    "jest": "26.5.3",
+    "jest-junit": "12.0.0",
+    "prettier": "^1.19.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.0",
+    "semver": "^7.1.1",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^6.2.1",
+    "ts-morph": "^11.0.3",
+    "ts-node": "^8.7.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4"
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "reports",
+    "outputName": "jest-junit.xml",
+    "ancestorSeparator": " › ",
+    "uniqueOutputName": "false",
+    "suiteNameTemplate": "{filepath}",
+    "classNameTemplate": "{classname}",
+    "titleTemplate": "{title}"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

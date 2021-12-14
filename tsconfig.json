@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"lib": [
+			"es2018",
+			"esnext",
+			"dom"
+		],
+		"module": "commonjs",
+		"target": "esnext",
+		"moduleResolution": "node",
+		"alwaysStrict": true,
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"declaration": true,
+		"preserveSymlinks": true,
+		"preserveWatchOutput": true,
+		"pretty": false,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": false,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"emitDecoratorMetadata": true,
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true
+	},
+	"files": [
+		"src/index.ts"
+	],
+	"include": [
+		"src/**/*",
+		"test/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
+}
