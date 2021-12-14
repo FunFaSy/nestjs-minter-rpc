@@ -77,8 +77,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@funfasy/nestjs-minter-rpc": "git+https://github.com/FunFaSy/nestjs-minter-rpc.git"
   }
 }
