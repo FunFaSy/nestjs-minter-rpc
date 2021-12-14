@@ -4,20 +4,13 @@ import {
   MinterRpcModuleOptions,
   MinterRpcModuleOptionsFactory,
 } from './minter.interfaces';
-import {
-  createMinterRpcConnection,
-  getMinterRpcOptionsToken,
-  getMinterRpcConnectionToken,
-} from './minter.utils';
+import { createMinterRpcConnection, getMinterRpcOptionsToken, getMinterRpcConnectionToken } from './minter.utils';
 
 @Global()
 @Module({})
 export class MinterRpcCoreModule {
   /* forRoot */
-  static forRoot(
-    options: MinterRpcModuleOptions,
-    connection?: string,
-  ): DynamicModule {
+  static forRoot(options: MinterRpcModuleOptions, connection?: string): DynamicModule {
     const minterOptionsProvider: Provider = {
       provide: getMinterRpcOptionsToken(connection),
       useValue: options,
@@ -36,10 +29,7 @@ export class MinterRpcCoreModule {
   }
 
   /* forRootAsync */
-  public static forRootAsync(
-    options: MinterRpcModuleAsyncOptions,
-    connection: string,
-  ): DynamicModule {
+  public static forRootAsync(options: MinterRpcModuleAsyncOptions, connection: string): DynamicModule {
     const minterConnectionProvider: Provider = {
       provide: getMinterRpcConnectionToken(connection),
       useFactory(options: MinterRpcModuleOptions) {
@@ -51,23 +41,15 @@ export class MinterRpcCoreModule {
     return {
       module: MinterRpcCoreModule,
       imports: options.imports,
-      providers: [
-        ...this.createAsyncProviders(options, connection),
-        minterConnectionProvider,
-      ],
+      providers: [...this.createAsyncProviders(options, connection), minterConnectionProvider],
       exports: [minterConnectionProvider],
     };
   }
 
   /* createAsyncProviders */
-  public static createAsyncProviders(
-    options: MinterRpcModuleAsyncOptions,
-    connection?: string,
-  ): Provider[] {
+  public static createAsyncProviders(options: MinterRpcModuleAsyncOptions, connection?: string): Provider[] {
     if (!(options.useExisting || options.useFactory || options.useClass)) {
-      throw new Error(
-        'Invalid configuration. Must provide useFactory, useClass or useExisting',
-      );
+      throw new Error('Invalid configuration. Must provide useFactory, useClass or useExisting');
     }
 
     if (options.useExisting || options.useFactory) {
@@ -81,14 +63,9 @@ export class MinterRpcCoreModule {
   }
 
   /* createAsyncOptionsProvider */
-  public static createAsyncOptionsProvider(
-    options: MinterRpcModuleAsyncOptions,
-    connection?: string,
-  ): Provider {
+  public static createAsyncOptionsProvider(options: MinterRpcModuleAsyncOptions, connection?: string): Provider {
     if (!(options.useExisting || options.useFactory || options.useClass)) {
-      throw new Error(
-        'Invalid configuration. Must provide useFactory, useClass or useExisting',
-      );
+      throw new Error('Invalid configuration. Must provide useFactory, useClass or useExisting');
     }
 
     if (options.useFactory) {
@@ -101,9 +78,7 @@ export class MinterRpcCoreModule {
 
     return {
       provide: getMinterRpcOptionsToken(connection),
-      async useFactory(
-        optionsFactory: MinterRpcModuleOptionsFactory,
-      ): Promise<MinterRpcModuleOptions> {
+      async useFactory(optionsFactory: MinterRpcModuleOptionsFactory): Promise<MinterRpcModuleOptions> {
         return await optionsFactory.createMinterRpcModuleOptions();
       },
       inject: [options.useClass || options.useExisting],
