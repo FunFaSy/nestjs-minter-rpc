@@ -28,24 +28,27 @@ npm install @funfasy/minter-sdk-js @funfasy/nestjs-minter-rpc
 ### MinterModule.forRoot(options, connection?)
 
 ```ts
+// app.module.ts
 import { Module } from '@nestjs/common';
-import { MinterRpcModule } from '@funfasy/nestjs-minter-rpc';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MinterRpcModule } from '@funfasy/nestjs-minter-rpc';
 
 @Module({
-  imports: [
-    MinterRpcModule.forRoot({
-      config: {
-        baseURL: 'https://test.mnt.funfasy.dev/v2/',
-        headers: {
-            'Content-Type'     : 'application/json; charset=utf-8',
-            'X-Project-Id'     : '<YOUR-FUNFASY-PROJECT-ID>',
-            'X-Project-Secret' : '<YOUR-FUNFASY-PROJECT-SECRET>'
-        },
-      },
-    }),
-  ],
-  controllers: [AppController],
+    imports: [
+        MinterRpcModule.forRoot({
+          config: {
+            baseURL: 'https://test.mnt.funfasy.dev/v2/',
+            headers: {
+                'Content-Type'     : 'application/json; charset=utf-8',
+                'X-Project-Id'     : '<YOUR-FUNFASY-PROJECT-ID>',
+                'X-Project-Secret' : '<YOUR-FUNFASY-PROJECT-SECRET>'
+            },
+          },
+        }),
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
 ```
@@ -53,13 +56,15 @@ export class AppModule {}
 ### MinterModule.forRootAsync(options, connection?)
 
 ```ts
+// app.module.ts
 import { Module } from '@nestjs/common';
-import { MinterRpcModule } from '@funfasy/nestjs-minter-rpc';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MinterRpcModule } from '@funfasy/nestjs-minter-rpc';
 
 @Module({
-  imports: [
-    MinterRpcModule.forRootAsync({
+    imports: [
+      MinterRpcModule.forRootAsync({
       useFactory: () => ({
         config: {
           baseURL: 'https://test.mnt.funfasy.dev/v2/',
@@ -71,8 +76,9 @@ import { AppController } from './app.controller';
         },
       }),
     }),
-  ],
-  controllers: [AppController],
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
 ```
@@ -80,24 +86,30 @@ export class AppModule {}
 ### InjectMinter(connection?)
 
 ```ts
-import { Controller, Get, } from '@nestjs/common';
+// app.service.ts
+import { Injectable } from '@nestjs/common';
 import { InjectMinterRpc, MinterRpc } from '@funfasy/nestjs-minter-rpc';
+import { BlocksResponse } from '@funfasy/minter-sdk-js/lib/providers/internal';
 
-@Controller()
-export class AppController {
-  constructor(
-    @InjectMinterRpc() private readonly minterApi: MinterRpc,
-  ) {}
+@Injectable()
+export class AppService {
+  constructor(@InjectMinterRpc() private readonly minterApi: MinterRpc) {}
 
-  @Get()
-  async getBlocks() {
+  async getHello(): Promise<BlocksResponse> {
     try {
-        const height = await this.minterApi.status().then(res=>Number(res.latest_block_height));
-        const batch = await this.minterApi.blocks({fromHeight: height - 10, toHeight: height })
-     
-        return batch;
+      const height = await this.minterApi
+        .status()
+        .then((res) => Number(res.latest_block_height));
+
+      const batch = await this.minterApi.blocks({
+        fromHeight: height - 10,
+        toHeight: height,
+      });
+
+      return batch;
     } catch (e) {
       console.log(e);
+      throw e; 
     }
   }
 }
