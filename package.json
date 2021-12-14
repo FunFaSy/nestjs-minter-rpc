@@ -27,6 +27,7 @@
     "fix": "eslint test/**/*.ts --fix && eslint src/**/*.ts --fix",
     "compile": "rm -rf dist && tsc -p ./tsconfig.json -p tsconfig.build.json",
     "build": "yarn compile",
+    "install": "yarn build",
     "test": "jest --ci --reporters=default --reporters=jest-junit --runInBand",
     "test-cov": "jest --ci --coverage",
     "prepublish": "not-in-install && (yarn build) || in-install"
