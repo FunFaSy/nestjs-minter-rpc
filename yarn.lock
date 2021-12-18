@@ -294,10 +294,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@funfasy/minter-sdk-js@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@funfasy/minter-sdk-js/-/minter-sdk-js-0.1.5.tgz#9eb5dfe6e54ed7c821ea14b8476734b6e0595e12"
-  integrity sha512-feYGBsIlrNgIYayV1MZn6kZ4TDjbpdwEZfM0UZaQDFqS3PclH1ZcHUDwcUYyH6jS+a8kq+DEySYKirDAoc183w==
+"@funfasy/minter-sdk-js@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@funfasy/minter-sdk-js/-/minter-sdk-js-0.1.6.tgz#78a4dfebea01f8e40fcb2eca15baa7186f4e91b4"
+  integrity sha512-YrVjPK8d8QBI2iyLDgihaoBkMSYj5BKYdAYB8yLg/vj1sNJCsoSq0H4WoozvY/DhL0HYaoa6QM6dnoM7I6vjoQ==
   dependencies:
     axios "^0.24.0"
     axios-retry "^3.2.4"
