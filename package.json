@@ -32,14 +32,14 @@
     "test-cov": "jest --ci --coverage",
     "prepublish": "not-in-install && (yarn build) || in-install"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
+    "@funfasy/minter-sdk-js": ">=0.1.5",
     "@nestjs/common": ">=6.7.0",
-    "@nestjs/core": ">=6.7.0",
-    "@funfasy/minter-sdk-js": ">=0.1.5"
+    "@nestjs/core": ">=6.7.0"
   },
   "devDependencies": {
+    "@funfasy/minter-sdk-js": "^0.1.6",
     "@nestjs/common": "^8.2.3",
     "@nestjs/core": "^8.2.3",
     "@nestjs/testing": "^8.2.3",
