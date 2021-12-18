@@ -19,7 +19,8 @@ Integrates Minter with Nest
 ## Installation
 
 ```shell script
-yarn add  @funfasy/nestjs-minter-rpc
+# Install peer peerDependencies 
+yarn add  @funfasy/minter-sdk-js && yarn add  @funfasy/nestjs-minter-rpc
 ## OR
 npm install @funfasy/nestjs-minter-rpc
 ```

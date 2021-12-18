@@ -33,11 +33,11 @@
     "prepublish": "not-in-install && (yarn build) || in-install"
   },
   "dependencies": {
-    "@funfasy/minter-sdk-js": "^0.1.5"
   },
   "peerDependencies": {
     "@nestjs/common": ">=6.7.0",
-    "@nestjs/core": ">=6.7.0"
+    "@nestjs/core": ">=6.7.0",
+    "@funfasy/minter-sdk-js": ">=0.1.5"
   },
   "devDependencies": {
     "@nestjs/common": "^8.2.3",
