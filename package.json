@@ -1,6 +1,6 @@
 {
   "name": "@funfasy/nestjs-minter-rpc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NestJs module to interact with Minter Protocol via RPC API",
   "author": "FunFaSy Team (https://github.com/FunFaSy)",
   "license": "(MIT AND Apache-2.0)",
